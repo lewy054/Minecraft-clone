@@ -4,10 +4,12 @@ grass_texture = load_texture('assets/grass_block.png')
 stone_texture = load_texture('assets/stone_block.png')
 brick_texture = load_texture('assets/brick_block.png')
 dirt_texture = load_texture('assets/dirt_block.png')
-punch_sound = Audio('assets/punch_sound', loop = False, autoplay=False)
+punch_sound = Audio('assets/punch_sound', loop=False, autoplay=False)
+
 
 class Voxel(Button):
-    def __init__(self, position=(0, 0, 0), texture=grass_texture):
+    def __init__(self, upd=0, position=(0, 0, 0), texture=grass_texture):
+        self.upd = upd
         super().__init__(
             parent=scene,
             position=position,
@@ -23,16 +25,19 @@ class Voxel(Button):
         if self.hovered:
             if key == 'left mouse down':
                 punch_sound.play()
-                block_pick = update.block_pick
+                block_pick = self.upd.block_pick
                 if block_pick == 1:
-                    block_texture = grass_texture
-                elif block_pick == 2:
-                    block_texture = stone_texture
-                elif block_pick == 3:
                     block_texture = dirt_texture
-                elif block_pick == 4:
+                elif block_pick == 2:
                     block_texture = brick_texture
-                Voxel(position=self.position + mouse.normal, texture=block_texture)
+                elif block_pick == 3:
+                    block_texture = grass_texture
+                elif block_pick == 4:
+                    block_texture = stone_texture
+                elif block_pick == 5:
+                    block_texture = dirt_texture
+                Voxel(self.upd, position=self.position +
+                      mouse.normal, texture=block_texture)
             elif key == 'right mouse down':
                 punch_sound.play()
                 destroy(self)
