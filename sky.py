@@ -8,5 +8,7 @@ class Sky(Entity):
         super().__init__(
             parent=scene,
             model='sphere',
-            texture=sky_texture
+            texture=sky_texture,
+            scale = 150,
+            double_sided = True,
         )

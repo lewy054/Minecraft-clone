@@ -4,13 +4,16 @@ from update import update_function
 
 app = Ursina()
 from voxel import Voxel
+from hand import Hand
+from sky import Sky
 
 
 def update():
-    update_function()
+    update_function(hand)
 
 
 player = FirstPersonController()
+hand = Hand()
 sky = Sky()
 
 for z in range(16):
