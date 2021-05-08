@@ -1,7 +1,6 @@
 from ursina import *
 block_pick = 1
 
-
 def update_function(hand):
     hand_position(hand)
     select_block()
