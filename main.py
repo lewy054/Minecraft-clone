@@ -11,6 +11,7 @@ def update():
 
 
 player = FirstPersonController()
+sky = Sky()
 
 for z in range(16):
     for x in range(16):
