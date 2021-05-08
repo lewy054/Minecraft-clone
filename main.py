@@ -1,8 +1,15 @@
 from ursina import *
 from ursina.prefabs.first_person_controller import FirstPersonController
-from voxel import Voxel
+from update import update_function
 
 app = Ursina()
+from voxel import Voxel
+
+
+def update():
+    update_function()
+
+
 player = FirstPersonController()
 
 for z in range(16):
