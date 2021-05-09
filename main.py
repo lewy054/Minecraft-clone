@@ -27,15 +27,16 @@ def create_quick_bar():
 
 
 slots = {}
-window.fps_counter.enabled = False
+voxels = []
+# window.fps_counter.enabled = False
+# scene.fog_density = .05
 player = FirstPersonController()
 hand = Hand()
 sky = Sky()
 create_quick_bar()
-upd = Update(hand, slots)
-
-for z in range(16):
-    for x in range(16):
-        voxel = Voxel(upd, position=(x, 0, z))
+upd = Update(hand, slots, player, voxels, Voxel)
+for z in range(-16, 16):
+    for x in range(-16, 16):
+        voxels.append(Voxel(upd, position=(x, 0, z)))
 
 app.run()

@@ -1,5 +1,7 @@
 from ursina import *
 import update
+
+
 grass_texture = load_texture('assets/grass_block.png')
 stone_texture = load_texture('assets/stone_block.png')
 brick_texture = load_texture('assets/brick_block.png')
@@ -8,7 +10,7 @@ punch_sound = Audio('assets/punch_sound', loop=False, autoplay=False)
 
 
 class Voxel(Button):
-    def __init__(self, upd=0, position=(0, 0, 0), texture=grass_texture):
+    def __init__(self, upd, position=(0, 0, 0), texture=grass_texture):
         self.upd = upd
         super().__init__(
             parent=scene,
@@ -40,4 +42,8 @@ class Voxel(Button):
                       mouse.normal, texture=block_texture)
             elif key == 'right mouse down':
                 punch_sound.play()
-                destroy(self)
+                self.delete()
+
+    def delete(self):
+        self.upd.voxels.remove(self)
+        destroy(self)
